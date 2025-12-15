@@ -177,7 +177,7 @@ function updateChart(labels, data) {
       }]
     },
     options: {
-      responsive: true,
+      responsive: false,
       maintainAspectRatio: false, 
       animation: {
         duration: 0
