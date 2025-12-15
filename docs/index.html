@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CBC Performance Dashboard</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+  <h1>CBC Learner Performance Dashboard</h1>
+  <p>Interactive CBC analysis and visualization</p>
+</header>
+
+
+<section id="report">
+
+  <section class="card">
+    <h3>Class Results Summary (Max Score: 72)</h3> <div class="table-wrapper">
+      <table id="classTable">
+        <thead>
+          <tr>
+            <th>Learner</th>
+            <th>English</th>
+            <th>Kiswahili</th>
+            <th>Mathematics</th>
+            <th>Integrated Science</th>
+            <th>Agriculture</th>
+            <th>Social Studies</th>
+            <th>CRE</th>
+            <th>Creative Arts</th>
+            <th>Pre-Technical</th>
+            <th>Total Score</th>
+            <th>Percentage</th> </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <button id="exportClassBtn">Export Class PDF</button>
+  </section>
+  
+  <section class="card">
+    <h3>Subject Performance Tally</h3>
+    <div class="table-wrapper">
+      <table id="tallyTable">
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>EE</th>
+            <th>ME</th>
+            <th>AE</th>
+            <th>BE</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+  
+  <section class="controls">
+    <label for="learnerSelect">Select Learner:</label>
+    <select id="learnerSelect"></select>
+    <button id="exportBtn">Export PDF</button>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <h3>Subject Performance</h3>
+      <canvas id="subjectChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Performance Summary</h3>
+      <ul id="summary"></ul>
+    </div>
+  </section>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="script.js"></script>
+</body>
+</html>

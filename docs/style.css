@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f4f6f9;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.controls {
+  max-width: 400px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+h3 {
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+}
+button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #163172;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background: #f5f5f5;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* Ensure the chart canvas has a usable height so Chart.js can render properly */
+#subjectChart {
+  height: 300px;
+}
