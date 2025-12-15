@@ -145,16 +145,23 @@ function populateTallyTable(learners) {
     const tally = {};
 
     subjects.forEach(sub => {
-        tally[sub] = { EE: 0, ME: 0, AE: 0, BE: 0 };
+        tally[sub] = {};
     });
+
+    // Collect all unique grades
+    const allGrades = new Set();
+    learners.forEach(l => {
+        subjects.forEach(sub => {
+            allGrades.add(l.subjects[sub]);
+        });
+    });
+    const gradeList = Array.from(allGrades).sort();
 
     learners.forEach(l => {
         subjects.forEach(sub => {
             const grade = l.subjects[sub];
-            const category = grade.substring(0, 2); // EE, ME, AE, BE
-            if (tally[sub][category] !== undefined) {
-                tally[sub][category]++;
-            }
+            if (!tally[sub][grade]) tally[sub][grade] = 0;
+            tally[sub][grade]++;
         });
     });
 
@@ -169,11 +176,11 @@ function populateTallyTable(learners) {
     thead.appendChild(headerTr);
 
     // For each grade, create row
-    ['EE', 'ME', 'AE', 'BE'].forEach(grade => {
+    gradeList.forEach(grade => {
         const tr = document.createElement("tr");
         tr.appendChild(document.createElement("td")).textContent = grade;
         subjects.forEach(sub => {
-            tr.appendChild(document.createElement("td")).textContent = tally[sub][grade];
+            tr.appendChild(document.createElement("td")).textContent = tally[sub][grade] || 0;
         });
         tbody.appendChild(tr);
     });
