@@ -99,22 +99,19 @@ function populateClassTable(learners) {
 
     learners.forEach(l => {
         const subjects = l.subjects;
-        const subjectScores = Object.values(subjects).map(gradeToNumber);
-        
-        // Calculate the total score
-        const totalScore = subjectScores.reduce((sum, score) => sum + score, 0);
-        
-        // Calculate the percentage based on Max 72
-        const percentage = ((totalScore / MAX_TOTAL_SCORE) * 100).toFixed(1); 
-
-        const tr = document.createElement("tr");
-        let tdContent = `<td>${l.learner}</td>`;
-        Object.values(subjects).forEach(grade => {
-            tdContent += `<td>${grade}</td>`;
+        let totalScore = 0;
+        Object.keys(subjects).forEach(sub => {
+            const grade = subjects[sub];
+            const score = gradeToNumber(grade);
+            totalScore += score;
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td>${l.learner}</td><td>${sub}</td><td>${grade}</td><td>${score}</td>`;
+            tbody.appendChild(tr);
         });
-        tdContent += `<td>${totalScore} / ${MAX_TOTAL_SCORE}</td><td>${percentage}%</td>`;
-        tr.innerHTML = tdContent;
-        tbody.appendChild(tr);
+        // Add total row
+        const trTotal = document.createElement("tr");
+        trTotal.innerHTML = `<td colspan="3"><strong>Total</strong></td><td><strong>${totalScore}</strong></td>`;
+        tbody.appendChild(trTotal);
     });
 }
 
@@ -142,15 +139,12 @@ function populateTallyTable(learners) {
     });
 
     subjects.forEach(sub => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td>${sub}</td>
-            <td>${tally[sub].EE}</td>
-            <td>${tally[sub].ME}</td>
-            <td>${tally[sub].AE}</td>
-            <td>${tally[sub].BE}</td>
-        `;
-        tbody.appendChild(tr);
+        ['EE', 'ME', 'AE', 'BE'].forEach(grade => {
+            const count = tally[sub][grade];
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td>${sub}</td><td>${grade}</td><td>${count}</td>`;
+            tbody.appendChild(tr);
+        });
     });
 }
 
@@ -185,7 +179,9 @@ function updateChart(labels, data) {
     options: {
       responsive: true,
       maintainAspectRatio: false, 
-      animation: false,
+      animation: {
+        duration: 0
+      },
       scales: {
         y: { beginAtZero: true, max: 8 } // Chart Y-axis max updated to 8
       },
