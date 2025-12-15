@@ -142,26 +142,20 @@ function populateTallyTable(learners) {
     tbody.innerHTML = '';
 
     const subjects = Object.keys(learners[0].subjects);
+    const grades = ['EE1', 'EE2', 'ME1', 'ME2', 'AE1', 'AE2', 'BE1', 'BE2'];
     const tally = {};
 
     subjects.forEach(sub => {
         tally[sub] = {};
+        grades.forEach(g => tally[sub][g] = 0);
     });
-
-    // Collect all unique grades
-    const allGrades = new Set();
-    learners.forEach(l => {
-        subjects.forEach(sub => {
-            allGrades.add(l.subjects[sub]);
-        });
-    });
-    const gradeList = Array.from(allGrades).sort();
 
     learners.forEach(l => {
         subjects.forEach(sub => {
             const grade = l.subjects[sub];
-            if (!tally[sub][grade]) tally[sub][grade] = 0;
-            tally[sub][grade]++;
+            if (tally[sub][grade] !== undefined) {
+                tally[sub][grade]++;
+            }
         });
     });
 
@@ -176,11 +170,11 @@ function populateTallyTable(learners) {
     thead.appendChild(headerTr);
 
     // For each grade, create row
-    gradeList.forEach(grade => {
+    grades.forEach(grade => {
         const tr = document.createElement("tr");
         tr.appendChild(document.createElement("td")).textContent = grade;
         subjects.forEach(sub => {
-            tr.appendChild(document.createElement("td")).textContent = tally[sub][grade] || 0;
+            tr.appendChild(document.createElement("td")).textContent = tally[sub][grade];
         });
         tbody.appendChild(tr);
     });
