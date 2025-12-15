@@ -94,34 +94,51 @@ function populateDropdown() {
 
 // --- POPULATE CLASS RESULTS TABLE (Fixes Class Results Not Showing & Implements 72 Max Score) ---
 function populateClassTable(learners) {
+    const thead = document.getElementById("classTableHead");
     const tbody = document.getElementById("classTable").querySelector("tbody");
+    thead.innerHTML = '';
     tbody.innerHTML = '';
 
+    // Create header
+    const headerTr = document.createElement("tr");
+    headerTr.appendChild(document.createElement("th")).textContent = "Subject";
     learners.forEach(l => {
-        const subjects = l.subjects;
-        const subjectScores = Object.values(subjects).map(gradeToNumber);
-        
-        // Calculate the total score
-        const totalScore = subjectScores.reduce((sum, score) => sum + score, 0);
-        
-        // Calculate the percentage based on Max 72
-        const percentage = ((totalScore / MAX_TOTAL_SCORE) * 100).toFixed(1); 
+        const th = document.createElement("th");
+        th.textContent = l.learner;
+        headerTr.appendChild(th);
+    });
+    thead.appendChild(headerTr);
 
+    // Get subjects
+    const subjects = Object.keys(learners[0].subjects);
+
+    // For each subject, create row
+    subjects.forEach(sub => {
         const tr = document.createElement("tr");
-        let tdContent = `<td>${l.learner}</td>`;
-        Object.values(subjects).forEach(grade => {
-            tdContent += `<td>${grade}</td>`;
+        tr.appendChild(document.createElement("td")).textContent = sub;
+        learners.forEach(l => {
+            const score = gradeToNumber(l.subjects[sub]);
+            tr.appendChild(document.createElement("td")).textContent = score;
         });
-        tdContent += `<td>${totalScore} / ${MAX_TOTAL_SCORE}</td><td>${percentage}%</td>`;
-        tr.innerHTML = tdContent;
         tbody.appendChild(tr);
     });
+
+    // Add total row
+    const totalTr = document.createElement("tr");
+    totalTr.appendChild(document.createElement("td")).textContent = "Total";
+    learners.forEach(l => {
+        const total = Object.values(l.subjects).reduce((sum, grade) => sum + gradeToNumber(grade), 0);
+        totalTr.appendChild(document.createElement("td")).textContent = total;
+    });
+    tbody.appendChild(totalTr);
 }
 
 
 // --- POPULATE SUBJECT PERFORMANCE TALLY ---
 function populateTallyTable(learners) {
+    const thead = document.getElementById("tallyTableHead");
     const tbody = document.getElementById("tallyTable").querySelector("tbody");
+    thead.innerHTML = '';
     tbody.innerHTML = '';
 
     const subjects = Object.keys(learners[0].subjects);
@@ -141,13 +158,24 @@ function populateTallyTable(learners) {
         });
     });
 
+    // Create header
+    const headerTr = document.createElement("tr");
+    headerTr.appendChild(document.createElement("th")).textContent = "Grade";
     subjects.forEach(sub => {
-        ['EE', 'ME', 'AE', 'BE'].forEach(grade => {
-            const count = tally[sub][grade];
-            const tr = document.createElement("tr");
-            tr.innerHTML = `<td>${sub}</td><td>${grade}</td><td>${count}</td>`;
-            tbody.appendChild(tr);
+        const th = document.createElement("th");
+        th.textContent = sub;
+        headerTr.appendChild(th);
+    });
+    thead.appendChild(headerTr);
+
+    // For each grade, create row
+    ['EE', 'ME', 'AE', 'BE'].forEach(grade => {
+        const tr = document.createElement("tr");
+        tr.appendChild(document.createElement("td")).textContent = grade;
+        subjects.forEach(sub => {
+            tr.appendChild(document.createElement("td")).textContent = tally[sub][grade];
         });
+        tbody.appendChild(tr);
     });
 }
 
