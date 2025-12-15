@@ -319,3 +319,28 @@ if (exportClassBtn) {
     });
   });
 }
+
+// --- EXPORT TALLY PDF LOGIC ---
+
+const exportTallyBtn = document.getElementById("exportTallyBtn");
+
+if (exportTallyBtn) {
+  exportTallyBtn.addEventListener("click", () => {
+    const tallyWrapper = document.querySelectorAll(".table-wrapper")[1]; // Assuming the tally is the second table-wrapper
+
+    html2canvas(tallyWrapper, { scale: 2 }).then(canvas => {
+      const imgData = canvas.toDataURL("image/png");
+      const { jsPDF } = window.jspdf;
+
+      const pdf = new jsPDF("p", "mm", "a4");
+      const width = pdf.internal.pageSize.getWidth();
+      const height = (canvas.height * width) / canvas.width;
+
+      pdf.setFontSize(16);
+      pdf.text("CBC Subject Performance Tally", 10, 15);
+      pdf.addImage(imgData, "PNG", 0, 20, width, height);
+
+      pdf.save("CBC_Subject_Tally.pdf");
+    });
+  });
+}
