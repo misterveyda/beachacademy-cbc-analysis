@@ -5,13 +5,13 @@
       "learner": "Aquillah Wanjiru Wangare",
       "subjects": {
         "English": "EE1",
-        "Kiswahili": "EE1",
-        "Mathematics": "ME2",
-        "Integrated Science": "EE2",
-        "Agriculture": "EE1",
+        "Kiswahili": "ME1",
+        "Mathematics": "EE2",
+        "Integrated Science": "EE1",
+        "Agriculture": "EE2",
         "Social Studies": "EE2",
-        "CRE": "EE2",
-        "Creative Arts": "EE1",
+        "CRE": "EE1",
+        "Creative Arts": "EE2",
         "Pre-Technical": "EE2"
       }
     },
@@ -33,13 +33,13 @@
       "learner": "Victoria Wanjiku Gaikia",
       "subjects": {
         "English": "ME1",
-        "Kiswahili": "ME1",
+        "Kiswahili": "ME2",
         "Mathematics": "ME2",
-        "Integrated Science": "ME2",
-        "Agriculture": "EE2",
+        "Integrated Science": "EE2",
+        "Agriculture": "ME2",
         "Social Studies": "EE2",
-        "CRE": "ME2",
-        "Creative Arts": "EE2",
+        "CRE": "EE2",
+        "Creative Arts": "ME1",
         "Pre-Technical": "ME1"
       }
     },
@@ -49,12 +49,12 @@
         "English": "ME1",
         "Kiswahili": "ME2",
         "Mathematics": "ME1",
-        "Integrated Science": "ME1",
+        "Integrated Science": "EE2",
         "Agriculture": "EE2",
         "Social Studies": "EE2",
-        "CRE": "EE2",
+        "CRE": "ME1",
         "Creative Arts": "ME1",
-        "Pre-Technical": "ME1"
+        "Pre-Technical": "EE2"
       }
     },
     {
@@ -63,7 +63,7 @@
         "English": "ME2",
         "Kiswahili": "ME2",
         "Mathematics": "AE1",
-        "Integrated Science": "AE1",
+        "Integrated Science": "ME1",
         "Agriculture": "ME1",
         "Social Studies": "ME1",
         "CRE": "ME2",
@@ -75,12 +75,12 @@
       "learner": "Finian Ancile Kamau",
       "subjects": {
         "English": "ME2",
-        "Kiswahili": "ME2",
+        "Kiswahili": "AE1",
         "Mathematics": "AE1",
-        "Integrated Science": "AE1",
+        "Integrated Science": "ME1",
         "Agriculture": "ME1",
-        "Social Studies": "ME1",
-        "CRE": "AE1",
+        "Social Studies": "AE1",
+        "CRE": "ME2",
         "Creative Arts": "ME2",
         "Pre-Technical": "ME2"
       }
@@ -89,39 +89,38 @@
   "performance_summary": [
     {
       "learner": "Aquillah Wanjiru Wangare",
-      "EE": 6,
-      "ME": 3,
-      "AE": 0
+      "ME1": 1,
+      "EE2": 5,
+      "EE1": 3
     },
     {
       "learner": "Kamau Joy Muthoni",
-      "EE": 5,
-      "ME": 4,
-      "AE": 0
+      "EE2": 6,
+      "EE1": 3
     },
     {
       "learner": "Victoria Wanjiku Gaikia",
-      "EE": 2,
-      "ME": 6,
-      "AE": 1
+      "ME2": 3,
+      "ME1": 3,
+      "EE2": 3
     },
     {
       "learner": "Tevin Wambugu",
-      "EE": 1,
-      "ME": 6,
-      "AE": 2
+      "ME2": 1,
+      "ME1": 4,
+      "EE2": 4
     },
     {
       "learner": "Miles Mwangi",
-      "EE": 0,
-      "ME": 5,
-      "AE": 4
+      "ME2": 5,
+      "ME1": 3,
+      "AE1": 1
     },
     {
       "learner": "Finian Ancile Kamau",
-      "EE": 1,
-      "ME": 4,
-      "AE": 4
+      "ME2": 4,
+      "ME1": 2,
+      "AE1": 3
     }
   ]
 }
